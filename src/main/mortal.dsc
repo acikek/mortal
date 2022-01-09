@@ -20,5 +20,5 @@ mortal:
     - narrate "<red>You're dying! Wait for someone to revive you, or use <yellow>/mortem <red>to end your life."
     on player dies flagged:mortal.mortem:
     - determine passively no_message
-    - announce "<player.name> met their own blade"
+    - customevent id:mortal_mortem
     - flag <player> mortal.mortem:!
