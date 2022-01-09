@@ -13,8 +13,9 @@ mortal_actions:
     - inventory open d:<context.location.flag[mortal.grave]>
     - flag <player> mortal.looting:<context.location>
     after player closes inventory flagged:mortal.looting:
-    - modifyblock <player.flag[mortal.looting]> air
-    - flag <player> mortal.looting:!
+    - if <context.inventory.is_empty>:
+      - modifyblock <player.flag[mortal.looting]> air
+      - flag <player> mortal.looting:!
     on player breaks block location_flagged:mortal.grave:
     - determine passively cancelled
     - narrate "<red>Loot this grave completely to remove it."
