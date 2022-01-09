@@ -6,7 +6,10 @@ mortal:
     # Put the player in spectator mode - can still look around but not present
     - adjust <player> gamemode:spectator
     # Create an NPC of the player
-    - create player <player.name> <player.location> save:copy
+    - create player <player.name> save:copy
+    - adjust <entry[copy].created_npc> skin_blob:<player.skin_blob>
+    # Spawn after skin loaded
+    - spawn <entry[copy].created_npc> <player.location>
     # Adjust the NPC to not be affected by gravity
     - adjust <entry[copy].created_npc> gravity:false
     - animate <entry[copy].created_npc> sleep
