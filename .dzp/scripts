@@ -21,7 +21,7 @@ mortal_cancel_state:
     - type
   doc: ~
 mortal_create_grave:
-  path: "./src/util/death.dsc"
+  path: "./src/util/grave.dsc"
   type: task
   keys:
     - definitions
