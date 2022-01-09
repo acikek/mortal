@@ -15,6 +15,9 @@ mortal_actions:
     after player closes inventory flagged:mortal.looting:
     - modifyblock <player.flag[mortal.looting]> air
     - flag <player> mortal.looting:!
+    on player breaks block location_flagged:mortal.grave:
+    - determine passively cancelled
+    - narrate "<red>Loot this grave completely to remove it."
 
 mortal_cancel_state:
   type: world
