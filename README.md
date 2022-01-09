@@ -15,6 +15,7 @@ This project aims to revamp the Minecraft death system. When a player dies by an
 * Upon "true" death, the NPC is removed and replaced with a skeleton skull, which can be looted like normal. If the grave is looted completely, the skeleton skull is removed.
   * True death is only triggered by the `mortem` command, but it can be used regardless of whether the player is dying or not.
   * The custom event `mortal_mortem` fires. This is useful for announcing a custom death message, as none is sent by default.
+    * If you determine the output as `keep_flag`, then the flag `mortal.mortem` will not be removed from the player by default.
 
 ## Setup
 

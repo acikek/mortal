@@ -20,5 +20,7 @@ mortal:
     - narrate "<red>You're dying! Wait for someone to revive you, or use <yellow>/mortem <red>to end your life."
     on player dies flagged:mortal.mortem:
     - determine passively no_message
-    - customevent id:mortal_mortem
-    - flag <player> mortal.mortem:!
+    - customevent id:mortal_mortem save:result
+    # Don't un-flag player if event determines 'keep_flag'
+    - if keep_flag not in <entry[result].determination_list>:
+      - flag <player> mortal.mortem:!
