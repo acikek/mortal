@@ -2,6 +2,9 @@ mortal_actions:
   type: world
   events:
     after player right clicks block flagged:!mortal.reviving:
+    - if <player.flag[mortal.dying]||false>:
+      # no looting or reviving if you yourself needs revived
+      - stop
     - inject mortal_find_dying_player
     # Revive if sneaking
     - if <player.is_sneaking>:
