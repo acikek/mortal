@@ -4,7 +4,7 @@ mortal_create_grave:
   script:
   - if !<player.inventory.is_empty>:
     # Place skull with random rotation
-    - modifyblock <[location]> skeleton_skull[direction=<material[skeleton_skull].valid_directions.random>]
+    - modifyblock <[location]> <player.skull_item.with[direction=<player.skull_item.material.valid_directions.random>]>
     # Generate and set grave inventory
     - define inv "<inventory[generic[size=54;title=<player.name>'s Grave]]>"
     - inventory copy d:<[inv]> o:<player.inventory>
