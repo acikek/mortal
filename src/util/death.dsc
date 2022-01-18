@@ -1,5 +1,6 @@
 mortal_find_dying_player:
   type: task
+  debug: false
   script:
   # Find the first NPC within 2 blocks of the player's location
   - define target <player.location.find_npcs_within[2].first.if_null[null]>
