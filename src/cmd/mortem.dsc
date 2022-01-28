@@ -11,4 +11,5 @@ mortal_mortem:
     - run mortal_true_death
   - else:
     - run mortal_create_grave def:<player.location>
-    - hurt <player> <player.health>
+    - adjust <player> gamemode:survival
+    - hurt <player.health>
