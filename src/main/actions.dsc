@@ -1,5 +1,6 @@
 mortal_actions:
   type: world
+  debug: false
   events:
     after player right clicks block flagged:!mortal.reviving:
     # Block looting/reviving if the player is the one dying
@@ -25,6 +26,7 @@ mortal_actions:
 
 mortal_cancel_state:
   type: world
+  debug: false
   events:
     on player steps on block flagged:mortal.dying:
     - determine cancelled
