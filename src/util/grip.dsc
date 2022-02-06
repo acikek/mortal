@@ -55,3 +55,6 @@ mortal_grip_control:
     - adjust <player> gamemode:survival
     - hurt <player.health>
     - flag player mortal.griplog:!
+
+
+
