@@ -22,6 +22,7 @@ mortal_grip:
       - cast remove <player> slow_digging
       - animate animation:STOP_SITTING <player>
       - run mortal_bossbar_update def:<&c>|<[id]>|<[err]>
+      - flag <[target_player]> mortal.griplog:!
       - stop
     - ~run mortal_bossbar_player_online_check def:<[target_player]>
     - bossbar update <[id]> progress:<[n].div[10]>
