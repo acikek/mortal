@@ -11,10 +11,14 @@ mortal_revive:
   - define id rev_<[target_player].name>
   - define title "<green>Reviving <yellow><[target_player].name><green>..."
   - bossbar create <[id]> players:<player>|<[target_player]> color:green style:segmented_10 title:<[title]> progress:0.0
+  - teleport <player> <[target].eye_location.relative[0,0,1]>
+  - animate <player> animation:sit
   - repeat 10 as:n:
     - wait 20t
     - if !<player.has_flag[mortal.reviving]>:
+      - animate <player> animation:ARM_SWING
       - define err "Revive stopped."
+      - animate <player> animation:stop_sit
       - run mortal_bossbar_update def:<&c>|<[id]>|<[err]>
       - stop
     - bossbar update <[id]> progress:<[n].div[10]>
@@ -22,6 +26,7 @@ mortal_revive:
   # Revive player
   - flag <[target_player]> mortal.dying:!
   - flag <player> mortal.reviving:!
+  - animate <player> animation:stop_sit
   - adjust <[target_player]> gamemode:survival
   - adjust <[target_player]> health:2
   # Remove copy NPC
