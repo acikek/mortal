@@ -2,7 +2,7 @@ mortal_actions:
   type: world
   debug: false
   events:
-    after player left clicks block flagged:!mortal.gripping|!rclick|!mortal.reviving with:*sword|*axe:
+    on player left clicks block flagged:!mortal.gripping|!rclick|!mortal.reviving with:*sword|*axe:
     - inject mortal_find_dying_player
     # Grip if sneaking
     - if <player.is_sneaking>:
