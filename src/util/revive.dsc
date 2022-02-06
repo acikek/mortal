@@ -13,15 +13,15 @@ mortal_revive:
   - bossbar create <[id]> players:<player>|<[target_player]> color:green style:segmented_10 title:<[title]> progress:0.0
   - repeat 10 as:n:
     - wait 20t
-    - if !<player.has_flag[mortal.gripping]>:
+    - if !<player.has_flag[mortal.reviving]>:
       - define err "Revive stopped."
-    - run mortal_bossbar_player_online_check defs:<[target_player]>
-    - run mortal_bossbar_update defs:&4|<[id]>|<[err]>
+      - run mortal_bossbar_update def:<&c>|<[id]>|<[err]>
+      - stop
     - bossbar update <[id]> progress:<[n].div[10]>
+    - run mortal_bossbar_player_online_check def:<[target_player]>
   # Revive player
   - flag <[target_player]> mortal.dying:!
   - flag <player> mortal.reviving:!
-  - flag <[target_player]> mortal.griplog:!
   - adjust <[target_player]> gamemode:survival
   - adjust <[target_player]> health:2
   # Remove copy NPC

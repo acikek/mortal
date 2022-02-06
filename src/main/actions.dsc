@@ -3,19 +3,19 @@ mortal_actions:
   debug: false
   events:
     after player left clicks block flagged:!mortal.gripping|!rclick|!mortal.reviving with:*sword|*axe:
-    - flag player lclick expire:1s
     - inject mortal_find_dying_player
     # Grip if sneaking
     - if <player.is_sneaking>:
+      - flag player lclick expire:1s
       - inject mortal_grip
     after player right clicks block flagged:!mortal.reviving|!rclick|!mortal.gripping:
     # Block looting/reviving if the player is the one dying
-    - flag player rclick expire:1s
     - if <player.has_flag[mortal.dying]>:
       - stop
     - inject mortal_find_dying_player
     # Revive if sneaking
     - if <player.is_sneaking>:
+      - flag player rclick expire:1s
       - inject mortal_revive
     # Loot otherwise
     - else:

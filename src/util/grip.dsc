@@ -15,8 +15,9 @@ mortal_grip:
     - wait 10t
     - if !<player.has_flag[mortal.gripping]>:
       - define err "Grip stopped."
-    - run mortal_bossbar_player_online_check defs:<[target_player]>
-    - run mortal_bossbar_update defs:&4|<[id]>|<[err]>
+      - run mortal_bossbar_update def:<&c>|<[id]>|<[err]>
+      - stop
+    - ~run mortal_bossbar_player_online_check def:<[target_player]>
     - bossbar update <[id]> progress:<[n].div[10]>
   - flag <[target_player]> mortal.mortem
   - run mortal_create_grave def:<[target].location>|<[target_player]>
