@@ -7,8 +7,17 @@ mortal_grip:
     - narrate "<red>This player is offline."
     - stop
   - flag <player> mortal.gripping
-  - flag <player> mortal.griplog
-  - inject grutilbar defs:<[target_player]>|"Grip"|"Gripp"
+  - flag <[target_player]> mortal.griplog
+  - define id grip_<[target_player].name>
+  - define title "<red>Gripping <yellow><[target_player].name><green>..."
+  - bossbar create <[id]> players:<player>|<[target_player]> color:red style:segmented_10 title:<[title]> progress:0.0
+  - repeat 10 as:n:
+    - wait 10t
+    - if !<player.has_flag[mortal.gripping]>:
+      - define err "Grip stopped."
+    - run mortal_bossbar_player_online_check defs:<[target_player]>
+    - run mortal_bossbar_update defs:&4|<[id]>|<[err]>
+    - bossbar update <[id]> progress:<[n].div[10]>
   - flag <[target_player]> mortal.mortem
   - run mortal_create_grave def:<[target].location>|<[target_player]>
   - adjust <[target_player]> gamemode:survival
