@@ -2,8 +2,15 @@ mortal_actions:
   type: world
   debug: false
   events:
-    after player right clicks block flagged:!mortal.reviving:
+    after player left clicks block flagged:!mortal.gripping|!rclick|!mortal.reviving with:*sword|*axe:
+    - flag player lclick expire:1s
+    - inject mortal_find_dying_player
+    # Grip if sneaking
+    - if <player.is_sneaking>:
+      - inject mortal_grip
+    after player right clicks block flagged:!mortal.reviving|!rclick|!mortal.gripping:
     # Block looting/reviving if the player is the one dying
+    - flag player rclick expire:1s
     - if <player.has_flag[mortal.dying]>:
       - stop
     - inject mortal_find_dying_player
@@ -34,3 +41,5 @@ mortal_cancel_state:
     - determine cancelled
     on player steps on block flagged:mortal.reviving:
     - flag <player> mortal.reviving:!
+    on player steps on block flagged:mortal.gripping:
+    - flag <player> mortal.gripping:!

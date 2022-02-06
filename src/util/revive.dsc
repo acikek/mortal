@@ -33,6 +33,7 @@ mortal_revive:
   # Revive player
   - flag <[target_player]> mortal.dying:!
   - flag <player> mortal.reviving:!
+  - flag <[target_player]> griplog:!
   - adjust <[target_player]> gamemode:survival
   - adjust <[target_player]> health:2
   # Remove copy NPC
