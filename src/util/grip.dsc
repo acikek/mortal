@@ -8,6 +8,7 @@ mortal_grip:
     - stop
 
   - flag <player> mortal.gripping
+  - flag <player> mortal.griplog
   - define id grip_<[target_player].name>
   - define title "<red>Gripping <yellow><[target_player].name><green>..."
   - bossbar create <[id]> players:<player>|<[target_player]> color:red style:segmented_10 title:<[title]> progress:0.0
@@ -30,15 +31,15 @@ mortal_grip:
   - hurt <[target_player].health> <[target_player]>
   - flag <player> mortal.gripping:!
   - flag <[target_player]> mortal.dying:!
-  - flag <[target_player]> griplog:!
+  - flag <[target_player]> mortal.griplog:!
   - remove <[target]>
   - bossbar remove <[id]>
 
 
-mortal_grip_log:
+mortal_grip_logout:
   type: world
   events:
-    on player quits flagged:griplog:
+    on player quits flagged:mortal.griplog:
     - inject mortal_find_dying_player
     - remove <[target]>
     - flag <player> mortal.mortem
@@ -46,4 +47,4 @@ mortal_grip_log:
     - run mortal_create_grave def:<player.location>|<player>
     - adjust <player> gamemode:survival
     - hurt <player.health>
-    - flag player griplog:!
+    - flag player mortal.griplog:!
