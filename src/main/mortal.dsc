@@ -16,9 +16,10 @@ mortal:
     # Flag the player in the "dying" state
     - flag <player> mortal.dying
     - flag <entry[copy].created_npc> mortal.copy:<player>
+    #Logs player
+    - flag <player> griplog
     # Narrate eath message
-    - narrate "<red>You're dying! Wait for someone to revive you, or use <yellow>/mortem <red>to end your life."
-    on player dies flagged:mortal.mortem:
+    - narrate "<red>You're dying! Wait for someone to revive/grip you, or use <yellow>/mortem <red>to end your life. <&4><&l>Logging out will result in a death!"
     - determine passively no_message
     - customevent id:mortal_mortem save:result
     # Don't un-flag player if event determines 'keep_flag'
