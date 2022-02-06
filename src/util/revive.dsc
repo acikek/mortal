@@ -16,7 +16,7 @@ mortal_revive:
   - repeat 10 as:n:
     - wait 20t
     - if !<player.has_flag[mortal.reviving]>:
-      - animate <player> animation:ARM_SWING 
+      - animate <player> animation:ARM_SWING
       - define err "Revive stopped."
       - animate <player> animation:stop_sit
       - run mortal_bossbar_update def:<&c>|<[id]>|<[err]>
