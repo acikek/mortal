@@ -17,8 +17,7 @@ mortal:
     - flag <player> mortal.dying
     - flag <entry[copy].created_npc> mortal.copy:<player>
     # Narrate eath message
-    - narrate "<red>You're dying! Wait for someone to revive you, or use <yellow>/mortem <red>to end your life."
-    on player dies flagged:mortal.mortem:
+    - narrate "<red>You're dying! Wait for someone to revive/grip you, or use <yellow>/mortem <red>to end your life."
     - determine passively no_message
     - customevent id:mortal_mortem save:result
     # Don't un-flag player if event determines 'keep_flag'
