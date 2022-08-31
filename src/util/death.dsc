@@ -16,7 +16,7 @@ mortal_true_death:
   - run mortal_create_grave def:<[target].location>
   # Kill player
   - adjust <player> gamemode:survival
-  - hurt <player.health>
+  - kill
   - flag <player> mortal.dying:!
   # Remove NPC
   - remove <[target]>

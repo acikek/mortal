@@ -4,13 +4,13 @@ mortal_revive:
   script:
   - define target_player <[target].flag[mortal.copy]>
   - if !<[target_player].is_online>:
-    - narrate "<red>This player is offline."
+    - narrate "<&[error]>This player is offline."
     - stop
   # Put player in "reviving" state to check for movement
   - flag <player> mortal.reviving
   # Create countdown bossbar
   - define id revive_<[target_player].name>
-  - define title "<green>Reviving <yellow><[target_player].name><green>..."
+  - define title "<green>Reviving <&[emphasis]><[target_player].name><green>..."
   - bossbar create <[id]> players:<player>|<[target_player]> color:green style:segmented_10 title:<[title]> progress:0.0
   # Countdown with 10s
   - repeat 10 as:n:

@@ -4,8 +4,7 @@ mortal_actions:
   events:
     after player right clicks block flagged:!mortal.reviving:
     # Block looting/reviving if the player is the one dying
-    - if <player.has_flag[mortal.dying]>:
-      - stop
+    - stop if:<player.has_flag[mortal.dying]>
     - inject mortal_find_dying_player
     # Revive if sneaking
     - if <player.is_sneaking>:
@@ -22,7 +21,7 @@ mortal_actions:
       - flag <player> mortal.looting:!
     on player breaks block location_flagged:mortal.grave:
     - determine passively cancelled
-    - narrate "<red>Loot this grave completely to remove it."
+    - narrate "<&[error]>Loot this grave completely to remove it."
 
 mortal_cancel_state:
   type: world
