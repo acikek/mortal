@@ -1,3 +1,16 @@
+mortal_true_death:
+  type: task
+  script:
+  - inject mortal_find_dying_player
+  # Add grave
+  - run mortal_create_grave def:<npc.location>
+  # Kill player
+  - adjust <player> gamemode:survival
+  - kill
+  - flag <player> mortal.dying:!
+  # Remove NPC
+  - remove <npc>
+
 mortal:
   type: world
   events:
@@ -7,17 +20,18 @@ mortal:
     - adjust <player> gamemode:spectator
     # Create an NPC of the player
     - create player <player.name> save:copy
-    - adjust <entry[copy].created_npc> skin_blob:<player.skin_blob>
+    - define __npc <entry[copy].created_npc>
+    - adjust <npc> skin_blob:<player.skin_blob>
     # Spawn after skin loaded
-    - spawn <entry[copy].created_npc> <player.location>
+    - spawn <npc> <player.location>
     # Adjust the NPC to not be affected by gravity
-    - adjust <entry[copy].created_npc> gravity:false
-    - animate <entry[copy].created_npc> sleep
+    - adjust <npc> gravity:false
+    - animate <npc> sleep
     # Flag the player in the "dying" state
     - flag <player> mortal.dying
-    - flag <entry[copy].created_npc> mortal.copy:<player>
+    - flag <npc> mortal.copy:<player>
     # Narrate eath message
-    - narrate "<red>You're dying! Wait for someone to revive you, or use <&[emphasis]>/mortem <red>to end your life."
+    - narrate "<&[negative]>You're dying! Wait for someone to revive you, or use <&[emphasis]>/mortem <&[negative]>to end your life."
     on player dies flagged:mortal.mortem:
     - determine passively no_message
     - customevent id:mortal_mortem save:result

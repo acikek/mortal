@@ -13,7 +13,7 @@ mortal_actions:
       - inject mortal_revive
     # Loot otherwise
     - else:
-      - inventory open d:<[target].flag[mortal.copy].inventory>
+      - inventory open d:<npc.flag[mortal.copy].inventory>
 
     #| Grave looting
     after player right clicks block location_flagged:mortal.grave:

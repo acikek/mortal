@@ -7,25 +7,13 @@ mortal_find_dying_player:
   # Stop if the NPC wasn't found or doesn't have the proper flag
   - if <[target]> == null or not <[target].has_flag[mortal.copy]>:
     - stop
+  # Define to <npc>
+  - define __npc <[target]>
 
 mortal_check_target_player:
   type: task
-  definitions: target
   script:
-  - define target_player <[target].flag[mortal.copy]>
+  - define target_player <npc.flag[mortal.copy]>
   - if !<[target_player].is_online>:
     - narrate "<&[error]>This player is offline."
     - stop
-
-mortal_true_death:
-  type: task
-  script:
-  - inject mortal_find_dying_player
-  # Add grave
-  - run mortal_create_grave def:<[target].location>
-  # Kill player
-  - adjust <player> gamemode:survival
-  - kill
-  - flag <player> mortal.dying:!
-  # Remove NPC
-  - remove <[target]>
