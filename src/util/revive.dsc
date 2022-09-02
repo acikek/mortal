@@ -2,10 +2,7 @@ mortal_revive:
   type: task
   definitions: target
   script:
-  - define target_player <[target].flag[mortal.copy]>
-  - if !<[target_player].is_online>:
-    - narrate "<&[error]>This player is offline."
-    - stop
+  - inject mortal_check_target_player
   # Put player in "reviving" state to check for movement
   - flag <player> mortal.reviving
   # Create countdown bossbar
@@ -16,10 +13,10 @@ mortal_revive:
   - repeat 10 as:n:
     - wait 1s
     # Stop if: player moves (no longer has reviving flag)
-    - if !<player.has_flag[mortal.reviving]> || <[target_player].has_flag[mortal.carried]>:
+    - if not <player.has_flag[mortal.reviving]> or <[target_player].has_flag[mortal.carried]>:
       - define err "Reviving stopped."
     # or one of them goes offline
-    - else if !<player.is_online> || !<[target_player].is_online>:
+    - else if not <player.is_online> or not <[target_player].is_online>:
       - flag <player> mortal.reviving:!
       - define err "Player went offline."
     # If error, update bossbar and stop
