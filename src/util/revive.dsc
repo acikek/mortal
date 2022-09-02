@@ -16,7 +16,7 @@ mortal_revive:
   - repeat 10 as:n:
     - wait 1s
     # Stop if: player moves (no longer has reviving flag)
-    - if !<player.has_flag[mortal.reviving]>:
+    - if !<player.has_flag[mortal.reviving]> || <[target_player].has_flag[mortal.carried]>:
       - define err "Reviving stopped."
     # or one of them goes offline
     - else if !<player.is_online> || !<[target_player].is_online>:
