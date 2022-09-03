@@ -53,4 +53,5 @@ mortal_execute:
     - flag <[target_player]> mortal.execute:!
     - flag <[target_player]> mortal.dying:!
 
+    - wait 10t
     - remove <[target]>
