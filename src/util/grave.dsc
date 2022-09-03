@@ -1,5 +1,6 @@
 mortal_create_grave:
   type: task
+  debug: false
   definitions: location
   script:
   - stop if:<player.inventory.is_empty>

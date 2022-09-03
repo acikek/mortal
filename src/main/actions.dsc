@@ -8,7 +8,11 @@ mortal_actions:
     - inject mortal_find_dying_player
     # Revive if sneaking
     - if <player.is_sneaking>:
-      - inject mortal_revive
+      - narrate <player.item_in_hand.material.name.contains_all_text[sword]>
+      - if <player.item_in_hand.material.name.contains_all_text[sword]>:
+        - inject mortal_execute
+      - else:
+          - inject mortal_revive
     # Loot otherwise
     - else:
       - inventory open d:<[target].flag[mortal.copy].inventory>
@@ -23,6 +27,7 @@ mortal_actions:
     - determine passively cancelled
     - narrate "<&[error]>Loot this grave completely to remove it."
 
+
 mortal_cancel_state:
   type: world
   debug: false
@@ -33,3 +38,5 @@ mortal_cancel_state:
     - determine cancelled
     on player steps on block flagged:mortal.reviving:
     - flag <player> mortal.reviving:!
+    on player steps on block flagged:mortal.executing:
+    - flag <player> mortal.executing:!
