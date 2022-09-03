@@ -1,5 +1,6 @@
 mortal:
   type: world
+  debug: false
   events:
     on player dies flagged:!mortal.dying|!mortal.mortem:
     - determine passively cancelled

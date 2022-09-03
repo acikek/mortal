@@ -10,6 +10,7 @@ mortal_find_dying_player:
 
 mortal_true_death:
   type: task
+  debug: false
   script:
   - inject mortal_find_dying_player
   # Add grave

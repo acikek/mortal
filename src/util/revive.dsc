@@ -1,13 +1,19 @@
 mortal_revive:
   type: task
+  debug: false
   definitions: target
   script:
   - define target_player <[target].flag[mortal.copy]>
   - if !<[target_player].is_online>:
     - narrate "<&[error]>This player is offline."
     - stop
+  - if <[target_player].has_flag[mortal.execute]> || <[target_player].has_flag[mortal.carried]>:
+    - narrate "<&[error]>This player already has an incoming action."
+    - stop
+
   # Put player in "reviving" state to check for movement
   - flag <player> mortal.reviving
+  - flag <[target_player]> mortal.revive
   # Create countdown bossbar
   - define id revive_<[target_player].name>
   - define title "<green>Reviving <&[emphasis]><[target_player].name><green>..."
@@ -24,6 +30,7 @@ mortal_revive:
       - define err "Player went offline."
     # If error, update bossbar and stop
     - if <[err].exists>:
+      - flag <[target_player]> mortal.revive:!
       - bossbar update <[id]> color:red title:<red><[err]>
       - wait 3s
       - bossbar remove <[id]>
@@ -33,6 +40,7 @@ mortal_revive:
   # Revive player
   - flag <[target_player]> mortal.dying:!
   - flag <player> mortal.reviving:!
+  - flag <[target_player]> mortal.revive:!
   - adjust <[target_player]> gamemode:survival
   - adjust <[target_player]> health:2
   # Remove copy NPC
